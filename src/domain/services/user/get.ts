@@ -1,16 +1,14 @@
-import Container, { Service } from 'typedi';
+import UserRepository, { IUserRepository } from "../../repositories/user";
 
-import UserRepository, { IUserRepository } from '../../repositories/user';
-
-@Service()
 class GetUser {
   private userRepository: IUserRepository;
 
   constructor() {
-    this.userRepository = Container.get(UserRepository);
+    this.userRepository = new UserRepository();
   }
 
   public get() {
+    console.log("************ entrou");
     return this.userRepository.get();
   }
 }

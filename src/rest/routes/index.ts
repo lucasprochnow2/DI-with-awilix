@@ -1,20 +1,17 @@
-import { Application } from 'express';
-import Container, { Service } from 'typedi';
+import { Application } from "express";
 
-import UserRoutes from './user/routes';
-
-@Service()
 class RestRouters {
   server: Application;
-  userRoutes: UserRoutes;
+  container: any;
 
-  constructor(server: Application) {
+  constructor(server: Application, container: any) {
     this.server = server;
-    this.userRoutes = Container.get(UserRoutes);
+    this.container = container;
   }
 
   initialize() {
-    this.server.use('/user', this.userRoutes.initialize());
+    const userRoutes = this.container.resolve("userRoutes");
+    this.server.use("/user", userRoutes);
   }
 }
 

@@ -1,14 +1,14 @@
-import express, { Application, Router } from 'express';
-import bodyParser from 'body-parser';
-import { Service } from 'typedi';
+import express, { Application, Router } from "express";
+import bodyParser from "body-parser";
 
-import RestRouters from '../../rest/routes';
+import RestRouters from "../../rest/routes";
+import initializeInjection from "../injection";
 
 const PORT = 3000;
 
-@Service()
 class ExpressServer {
   server: Application;
+  container: any;
 
   constructor() {
     this.server = express();
@@ -24,11 +24,17 @@ class ExpressServer {
   }
 
   initializeRestRouters() {
-    const restRouters = new RestRouters(this.server);
+    const restRouters = new RestRouters(this.server, this.container);
     restRouters.initialize();
   }
 
+  initializeInjection() {
+    const container = initializeInjection();
+    this.container = container;
+  }
+
   initialize() {
+    this.initializeInjection();
     this.initializeMiddlewares();
     this.initializeRestRouters();
 
