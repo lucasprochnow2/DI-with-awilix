@@ -5,14 +5,14 @@ export interface IUserFindAllService {
 }
 
 class FindAll implements IUserFindAllService {
-  private findAllUserRepository: IUserFindAllRepository;
+  private findAllUser: IUserFindAllRepository;
 
   constructor({ findAllUserRepository }: any) {
-    this.findAllUserRepository = findAllUserRepository;
+    this.findAllUser = findAllUserRepository;
   }
 
   public findAll() {
-    return this.findAllUserRepository.findAll();
+    return this.findAllUser.findAll();
   }
 }
 
