@@ -1,1 +1,5 @@
-export default ["src/domain/services/**/*.ts", "src/rest/routes/**/*.ts"];
+export default [
+  "src/domain/services/**/*.ts",
+  "src/domain/repositories/**/*.ts",
+  "src/rest/routes/**/*.ts",
+];
