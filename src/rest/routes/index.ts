@@ -1,10 +1,11 @@
+import { AwilixContainer } from "awilix";
 import { Application } from "express";
 
 class RestRouters {
   server: Application;
-  container: any;
+  container: AwilixContainer;
 
-  constructor(server: Application, container: any) {
+  constructor(server: Application, container: AwilixContainer) {
     this.server = server;
     this.container = container;
   }

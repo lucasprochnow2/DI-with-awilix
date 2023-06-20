@@ -1,5 +1,6 @@
-import express, { Application, Router } from "express";
+import express, { Application } from "express";
 import bodyParser from "body-parser";
+import { AwilixContainer } from "awilix";
 
 import RestRouters from "../../rest/routes";
 import initializeInjection from "../injection";
@@ -8,14 +9,13 @@ const PORT = 3000;
 
 class ExpressServer {
   server: Application;
-  container: any;
+  container: AwilixContainer;
 
   constructor() {
-    this.server = express();
-  }
+    const container = initializeInjection();
 
-  getRouter() {
-    return Router();
+    this.server = express();
+    this.container = container;
   }
 
   initializeMiddlewares() {
@@ -28,13 +28,7 @@ class ExpressServer {
     restRouters.initialize();
   }
 
-  initializeInjection() {
-    const container = initializeInjection();
-    this.container = container;
-  }
-
   initialize() {
-    this.initializeInjection();
     this.initializeMiddlewares();
     this.initializeRestRouters();
 

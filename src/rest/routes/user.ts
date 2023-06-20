@@ -1,16 +1,15 @@
+import { Router } from "express";
 import { IUserFindAllService } from "../../domain/services/user/findAll";
 import { IUserFindByIdService } from "../../domain/services/user/findById";
 
 type TDeps = {
-  server: any;
   findAllUserService: IUserFindAllService;
   findByIdUserService: IUserFindByIdService;
 };
 
 const userRoutes = (deps: TDeps) => {
-  const { server, findAllUserService, findByIdUserService } = deps;
-
-  const router = server.getRouter();
+  const { findAllUserService, findByIdUserService } = deps;
+  const router = Router();
 
   router.get("/", (_: any, res: any) => {
     const getUser = findAllUserService.findAll();
