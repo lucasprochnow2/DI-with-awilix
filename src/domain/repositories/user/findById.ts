@@ -1,11 +1,11 @@
 import { User } from "./findAll";
 
 export interface IUserFindByIdRepository {
-  findById(userId: number): User;
+  findById(userId: string): User;
 }
 
 class UserFindByIdRepository implements IUserFindByIdRepository {
-  public findById(userId: number) {
+  public findById(userId: string) {
     return {
       name: `user name repo ${userId}`,
       motherName: `mother user name repo ${userId}`,

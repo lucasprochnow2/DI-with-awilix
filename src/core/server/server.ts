@@ -36,8 +36,8 @@ class ExpressServer {
       this.server.listen(PORT, (): void => {
         console.log(`Connected successfully on port ${PORT}`);
       });
-    } catch (error: any) {
-      console.error(`Error occurred: ${error.message}`);
+    } catch (error) {
+      console.error("Error occurred: ", error);
     }
   }
 }

@@ -4,10 +4,14 @@ export interface IUserFindAllService {
   findAll(): User[];
 }
 
+type TDeps = {
+  findAllUserRepository: IUserFindAllRepository;
+};
+
 class FindAll implements IUserFindAllService {
   private findAllUser: IUserFindAllRepository;
 
-  constructor({ findAllUserRepository }: any) {
+  constructor({ findAllUserRepository }: TDeps) {
     this.findAllUser = findAllUserRepository;
   }
 
